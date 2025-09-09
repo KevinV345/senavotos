@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;800&display=swap');
+
+* {
+    font-family: Poppins;
+    font-weight: 500;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url(../img/FondoSena3.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.filtros {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filtros label {
+    font-weight: bold;
+    color: green;
+}
+
+.filtros select {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.contador-votos {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin: 1%;
+    font-weight: bold;
+    font-size: 18px;
+    color: #008000;
+}
+
+.contador-votos span {
+    color: green;
+    margin-left: 1%;
+    padding: 10px 20px;
+    background-color: rgba(0, 128, 0, 0.152);
+    border: 1px solid green;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.tabla-scroll {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.text {
+    color: green;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 40px;
+}
+
+.container {
+    background-color: #ffffff67;
+    padding: 2%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.415);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 1000px;
+    border-radius: 15px;
+    height: 70%;
+    /* overflow-y: scroll; */
+    /* max-height: 500px; */
+}
+
+.container select {
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    /* margin-top: 20px; */
+    /* background-color: red; */
+    width: 100%;
+}
+
+thead {
+    position: sticky;
+    top: -4%;
+    padding: 10px;
+    font-size: 18px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    background-color: rgb(66, 158, 66);
+    z-index: 1;
+    color: white;
+}
+
+tbody {
+    /* font-size: 16px; */
+    height: 100%;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: rgba(124, 255, 124, 0.362);
+    /* color: white; */
+}
+
+p {
+    font-size: 20px;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.container2 h1 {
+    color: green;
+    font-size: 35px;
+}
+
+.container2 p {
+    font-size: 35px;
+}
+
+.btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-back {
+    background-color: #a90000;
+    transition: all 0.3s;
+}
+
+.btn-back:hover {
+    background-color: #5b0000;
+}
+
+.btn-export {
+    background-color: #28a745;
+    transition: all 0.3s;
+}
+
+.btn-export:hover {
+    background-color: #218838;
+}
+
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .btn-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+    background: #00000000;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #00b000;
+    border: 3px solid #f5f5f500;
+    transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: green;
+}

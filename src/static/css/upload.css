@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;800&display=swap');
+
+* {
+    font-family: Poppins;
+    font-weight: 500;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url(../img/FondoSena3.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.padre {
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.57);
+    padding: 2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    width: 80%;
+    max-width: 1200px;
+    height: 80%;
+    overflow: hidden;
+}
+
+.container h1 {
+    color: #28a745;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.container button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    transition: all 0.3s;
+    margin: 0.5rem 0;
+}
+
+.container button:hover {
+    background-color: #218838; 
+    transform: translateY(-2px);
+}
+
+.container button:active {
+    background-color: #1e7e34; 
+    transform: translateY(0);
+}
+
+.cargar {
+    display: flex;
+    flex-direction: column;
+}
+
+.cargar input {
+    border: none;
+    color: white;
+    background-color: #28a745;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.cargar input:hover {
+    background-color: #218838;
+}
+
+.cargar input:active {
+    background-color: #1e7e34;
+}
+
+.form-control {
+    background-color: rgba(197, 241, 194, 0.301);
+    border: none;
+    border-radius: 8px;
+    padding: 2%;
+}
+
+.container .btn-secondary {
+    color: green;
+    text-decoration: none;
+    margin: 1%;
+    transition: 0.2s;
+}
+
+.container .btn-secondary:hover {
+    color: rgb(0, 68, 0);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        height: auto;
+        padding: 1.5rem;
+    }
+
+    .container h1 {
+        font-size: 1.5rem;
+    }
+
+    .container button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .cargar input {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+}
+    

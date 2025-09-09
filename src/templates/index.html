@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SenaVotos</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/senavotos_logo.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>¡Bienvenido!</h1>
+    </header>
+    <main class="container">
+        <div class="form-container">
+            <!-- Mostrar mensaje de error si existe -->
+            {% if mensaje %}
+            <div class="flash-messages">
+                <p class="error-message">{{ mensaje }}</p>
+            </div>
+            {% endif %}
+
+            <!-- Mostrar datos del usuario si existen -->
+            {% if datos %}
+            <div class="datos-usuario">
+                <p>Bienvenido, <strong>{{ datos[1] }}</strong> (Documento: <strong>{{ datos[0] }}</strong>)</p>
+                <a href="/eleccion" class="submit-btn">Continuar a la votación</a>
+            </div>
+            {% else %}
+            <!-- Mostrar formulario de ingreso -->
+            <form action="/" method="POST">
+                <label for="documento">Ingrese su Documento:</label>
+                <input type="number" id="documento" name="documento" placeholder="Número de documento" required>
+
+                <label for="clave">Ingrese su Clave:</label>
+                <input type="password" id="clave" name="clave"
+                    placeholder="Primeras 3 letras de tu programa (MAYÚS) + Últimos 3 números de tu ficha" required>
+                    <h4>Ejemplo: Diseño - 7654321 = DIS321</h2>
+                <button type="submit" class="submit-btn">Ingresar</button>
+            </form>
+            {% endif %}
+        </div>
+    </main>
+</body>
+
+</html>

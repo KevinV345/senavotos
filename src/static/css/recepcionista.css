@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;800&display=swap');
+
+* {
+    font-family: Poppins;
+    font-weight: 800;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    width: 100%;
+    height: 100vh;
+    background-image: url(../img/FondoSena3.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}   
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #4CAF50;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+#resultado {
+    max-width: 500px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #444;
+    font-size: 16px;
+}
+
+#resultado p {
+    margin: 0;
+}
+
+#resultado p.error {
+    color: #f44336;
+}
+
+#resultado p.success {
+    color: #4CAF50;
+}
+
+.box .btn-secondary {
+    color: green;
+    text-decoration: none;
+    margin: 2%;
+    transition: all 0.3s;
+}
+
+.box .btn-secondary:hover {
+    color: rgb(0, 68, 0);
+}
+
+/* Respondive */
+
+@media (max-width: 480px) {
+    form {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    form input[type="text"],
+    form button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    #resultado {
+        max-width: 90%;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    form {
+        max-width: 80%;
+    }
+
+    #resultado {
+        max-width: 80%;
+    }
+}
+

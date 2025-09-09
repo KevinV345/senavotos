@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nuevo Candidato</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/crear_candidato.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/senavotos_logo.png') }}" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Añadir Candidato</h1>
+        <form action="{{ url_for('crear_candidato') }}" method="POST" enctype="multipart/form-data" onsubmit="mostrarNotificacion(event)">
+            <label for="nombre_candidato">Nombre del Candidato:</label>
+            <input type="text" id="nombre_candidato" name="nombre_candidato" required>
+
+            <label for="foto_candidato">Foto del Candidato:</label>
+            <input type="file" id="foto_candidato" name="foto_candidato" accept="image/*" required>
+
+            <label for="jornada">Jornada:</label>
+            <select id="jornada" name="jornada">
+                <option value="mañana">Mañana</option>
+                <option value="tarde">Tarde</option>
+                <option value="mixta">Mixta</option>
+                <option value="virtual">Virtual</option>
+            </select>
+
+            <button type="submit">Crear</button>
+        </form>
+        <a href="/admin">Volver al Panel</a>
+    </div>
+
+    <script>
+        function mostrarNotificacion(event) {
+            event.preventDefault(); 
+
+            Swal.fire({
+                title: '¡Candidato añadido!',
+                text: 'Se ha registrado correctamente.',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true
+            });
+
+            setTimeout(() => {
+                event.target.submit();
+            }, 2000);
+        }
+    </script>
+</body>
+
+</html>

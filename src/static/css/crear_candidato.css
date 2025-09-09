@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;800&display=swap');
+
+* {
+    font-family: Poppins;
+    font-weight: 800;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url(../img/FondoSena3.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Contenedor del formulario */
+.container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px 30px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+}
+
+.container h1 {
+    font-size: 24px;
+    color: green;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+input[type="text"], 
+input[type="file"], 
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus, 
+input[type="file"]:focus, 
+select:focus {
+    border-color: green;
+    box-shadow: 0 0 5px rgba(0, 117, 41, 0.5);
+}
+
+button {
+    background-color: green;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background-color: rgb(0, 102, 0);
+}
+
+a {
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: green;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+a:hover {
+    color: rgb(0, 95, 0);
+}
+
+/* Estilo para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f0f0f0;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    z-index: 1000;
+    text-align: center;
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal p {
+    color: green;
+    text-shadow: #444;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.overlay.show {
+    display: block;
+}

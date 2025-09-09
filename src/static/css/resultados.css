@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;800&display=swap');
+
+* {
+    font-family: Poppins;
+    font-weight: 500;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    background-image: url(../img/FondoSena3.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body a {
+    position: absolute; 
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    background-color: green;
+    transition: 0.3s;
+    border-radius: 8px;
+    transition: all 0.3s;
+    /* margin: 1%; */
+}
+
+body a:hover {
+    background-color: rgb(0, 89, 0);
+}
+
+.contenedor {
+    margin: 4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: green;
+    text-align: center;
+    /* margin: 1%; */
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: green;
+}
+
+#graficasContainer {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 50px;
+    justify-content: center;
+    width: 100%;
+}
+
+.grafica {
+    background-color: #ffffff5c;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.grafica:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+canvas {
+    max-width: 100%; 
+    height: auto;
+}   
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #ddd;
+}

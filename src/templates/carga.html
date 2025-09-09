@@ -1,0 +1,32 @@
+<!-- templates/carga.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cargando...</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/carga.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/senavotos_logo.png') }}" type="image/webp">
+</head>
+<body>
+    <div class="loader">
+        <img src="{{ url_for('static', filename='img/senavotos_logo.png') }}" alt="Logo Cajapi" class="logo">
+        <p class="logo">SenaVotos</p>
+    </div>
+
+    <script>
+        const rutas = {
+            admin: "{{ url_for('admin') }}",
+            recepcionista: "{{ url_for('recepcionista') }}",
+            resultados: "{{ url_for('resultados') }}",
+            eleccion: "{{ url_for('eleccion') }}"
+        };
+
+        const destino = "{{ destino }}";
+
+        setTimeout(() => {
+            const urlDestino = rutas[destino] || "/";
+            window.location.href = urlDestino;
+        }, 2500);  
+    </script>
+</body>
+</html>

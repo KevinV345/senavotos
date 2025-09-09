@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recepcionista</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/recepcionista.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/senavotos_logo.png') }}" type="image/png">
+</head>
+
+<body>
+    <div class="box">
+        <h1>Recepción</h1>
+        <form id="buscarForm">
+            <label for="documento">Ingrese Documento:</label>
+            <input type="text" id="documento" name="documento" placeholder="N° Documento" required>
+            <button type="submit">Buscar</button>
+            <a href="{{ url_for('home') }}" class="btn btn-secondary">Volver al Inicio</a>
+        </form>
+        <div id="resultado"></div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/recepcionista.js') }}"></script>
+</body>
+
+</html>

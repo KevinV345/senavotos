@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página de elección de candidatos del sistema de votación SENA">
+    <title>Elección de Candidatos</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/senavotos_logo.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/eleccion.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body onload="iniciarTemporizador()">
+    <header>
+        <h1 class="titulo">Elección de Candidatos</h1>
+    </header>
+
+    <div id="temporizador" class="temporizador">
+        <span id="minutos">1</span>:<span id="segundos">10</span>
+    </div>
+
+    <main>
+        <div class="contenedor">
+            {% if mensaje %}
+            <p class="mensaje-error">{{ mensaje }}</p>
+            {% endif %}
+
+            <section class="candidatos">
+                {% for candidato in candidatos %}
+                <article class="candidato">
+                    <img src="data:image/jpeg;base64,{{ candidato['foto'] }}"
+                        alt="Foto de {{ candidato['nombre_candidato'] }}" class="foto-candidato">
+                    <h3 class="nombre-candidato">{{ candidato['nombre_candidato'] }}</h3>
+                    <form method="POST" action="/eleccion" class="form-eleccion"
+                        onsubmit="return mostrarConfirmacion(event, '{{ candidato['nombre_candidato'] }}', this)">
+                        <input type="hidden" name="candidato_id" value="{{ candidato['idcandidato'] }}">
+                        <button type="submit" class="elegir-btn"
+                            aria-label="Elegir a {{ candidato['nombre_candidato'] }}">Elegir</button>
+                    </form>
+                </article>
+                {% endfor %}
+            </section>
+
+            {% if not candidatos %}
+            <p class="mensaje-vacio">No hay candidatos disponibles para su jornada en este momento.</p>
+            {% endif %}
+        </div>
+    </main>
+
+    <div id="modal-confirmacion" class="modal oculto">
+        <div class="modal-contenido">
+            <h2>¿Estás seguro?</h2>
+            <img id="imagen-candidato" class="imagen-candidato" src="" alt="Imagen del candidato seleccionado"
+                style="display: none;">
+            <p id="mensaje-confirmacion"></p>
+            <div class="modal-acciones">
+                <button id="cancelar-btn" class="cancelar-btn">Cancelar</button>
+                <button id="confirmar-btn" class="confirmar-btn">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/eleccion.js') }}"></script>
+</body>
+
+</html>

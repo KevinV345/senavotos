@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar Archivo de Fichas</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/senavotos_logo.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="padre">
+        <div class="container">
+            <h1>Cargar Ficha</h1>
+            <form method="POST" action="{{ url_for('procesar_fichas') }}" enctype="multipart/form-data" class="mt-4">
+                <div class="cargar">
+                    <input type="file" id="fileUpload" name="file" class="form-control mt-3" required>
+                    <button type="submit" class="btn btn-primary mt-3">Subir Archivo</button>
+
+                    <label for="jornada">Selecciona la Jornada:</label>
+                    <select id="jornada" name="jornada" class="form-control" required>
+                        <option value="mañana">Mañana</option>
+                        <option value="tarde">Tarde</option>
+                        <option value="mixta">Mixta</option>
+                        <option value="virtual">Virtual</option>
+                    </select>
+                </div>
+            </form>
+
+            <a href="{{ url_for('admin') }}" class="btn btn-secondary mt-4">Volver al Panel</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("fileUpload").addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const validTypes = [
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    "application/vnd.ms-excel"
+                ];
+                if (!validTypes.includes(file.type)) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Archivo inválido',
+                        text: 'Por favor, selecciona un archivo de Excel válido (.xls o .xlsx)'
+                    });
+                    event.target.value = ""; // Limpia el input
+                } else {
+                    console.log("Archivo válido:", file.name);
+                }
+            }
+        });
+    </script>
+
+    <!-- Notificaciones Flask con SweetAlert2 -->
+    {% set messages = get_flashed_messages(with_categories=true) %}
+    <script>
+        const flashMessages = {{ messages | tojson | safe if messages else '[]' }};
+
+        flashMessages.forEach(([category, message]) => {
+            Swal.fire({
+                icon: category === 'success' ? 'success' :
+                    category === 'info' ? 'info' :
+                        category === 'warning' ? 'warning' : 'error',
+                title: category === 'success' ? 'Éxito' :
+                    category === 'info' ? 'Información' :
+                        category === 'warning' ? 'Advertencia' : 'Error',
+                text: message,
+                timer: 3000,
+                showConfirmButton: false,
+                timerProgressBar: true
+            });
+        });
+    </script>
+
+</body>
+
+</html>

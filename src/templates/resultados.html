@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/resultados.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/senavotos_logo.png') }}" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Biblioteca Chart.js -->
+</head>
+
+<body>
+    <a href="{{ url_for('home') }}" class="btn btn-secondary">Volver al Inicio</a>
+
+    <h1>Resultados</h1>
+    <div class="contenedor">
+
+        <div id="graficasContainer">
+            {% for jornada, resultados in resultados.items() %}
+            <div class="grafica">
+                <h2>Jornada: {{ jornada | capitalize }}</h2>
+                <canvas id="grafica{{ jornada }}" width="400" height="200"></canvas>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        let graficas = {};
+    
+        function crearOActualizarGraficas(resultados) {
+            Object.keys(resultados).forEach(jornada => {
+                const candidatos = resultados[jornada];
+                const nombres = candidatos.map(c => c.nombre_candidato); // Nombres de los candidatos
+                const votos = candidatos.map(c => c.total_votos); // Total de votos
+    
+                const ctx = document.getElementById(`grafica${jornada}`).getContext('2d');
+    
+                if (graficas[jornada]) {
+                    graficas[jornada].data.labels = nombres;
+                    graficas[jornada].data.datasets[0].data = votos;
+                    graficas[jornada].update();
+                } else {
+                    graficas[jornada] = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: nombres, 
+                            datasets: [{
+                                label: 'Total de Votos',
+                                data: votos,
+                                backgroundColor: 'rgba(23, 110, 25, 0.853)',
+                                borderColor: 'rgb(0, 0, 0)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: { display: false },
+                                tooltip: { enabled: true }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        stepSize: 1,
+                                        callback: function (value) {
+                                            return Number.isInteger(value) ? value : '';
+                                        }
+                                    },
+                                    title: { display: true, text: 'Número de Votos' }
+                                },
+                                x: { title: { display: true, text: 'Candidatos' } }
+                            }
+                        }
+                    });
+                }
+            });
+        }
+    
+        function actualizarResultados() {
+            fetch('/resultados/datos')
+                .then(response => response.json())
+                .then(data => crearOActualizarGraficas(data))
+                .catch(error => console.error('Error al obtener los resultados:', error));
+        }
+    
+        setInterval(actualizarResultados, 5000);
+    
+        actualizarResultados();
+    </script>    
+</body>
+
+</html>
