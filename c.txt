@@ -1,0 +1,1 @@
+ssh -i llave.pem ubuntu@54.236.29.115
