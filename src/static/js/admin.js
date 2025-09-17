@@ -33,11 +33,84 @@ function actualizarVotos() {
             });
 
             $("#total-votos").text(data.total);
+            actualizarResumenVotos(data);
         }
     });
 }
 
-setInterval(actualizarVotos, 1000); // Recarga los votos cada 5 segundos
+function actualizarResumenVotos(data) {
+    // Procesar datos del resumen
+    const resumenPorJornada = {};
+    
+    // Inicializar el resumen por jornada con los totales
+    data.total_por_jornada.forEach(tj => {
+        resumenPorJornada[tj.jornada] = {
+            total: tj.total_votos,
+            candidatos: {}
+        };
+    });
+
+    // Agregar los votos por candidato en cada jornada
+    data.resumen_votos.forEach(rv => {
+        if (!resumenPorJornada[rv.jornada].candidatos) {
+            resumenPorJornada[rv.jornada].candidatos = {};
+        }
+        resumenPorJornada[rv.jornada].candidatos[rv.nombre_candidato] = rv.total_votos;
+    });
+
+    // Generar HTML del resumen
+    let html = `<div class="total-votos-resumen">Votos Totales: ${data.total}</div>`;
+
+    // Agregar resumen por jornada
+    Object.keys(resumenPorJornada).forEach(jornada => {
+        const jornadaData = resumenPorJornada[jornada];
+        html += `
+            <div class="jornada-resumen">
+                <div class="jornada-titulo">
+                    Jornada ${jornada.charAt(0).toUpperCase() + jornada.slice(1)}: ${jornadaData.total}
+                </div>
+                <div class="candidato-votos">`;
+
+        // Agregar votos por candidato
+        Object.keys(jornadaData.candidatos).forEach(candidato => {
+            html += `
+                <div>
+                    ${candidato}: ${jornadaData.candidatos[candidato]}
+                </div>`;
+        });
+
+        html += `</div></div>`;
+    });
+
+    // Actualizar el contenido
+    $('.resumenes').html(html);
+
+    // Agregar resumen por jornada
+    Object.keys(resumen.jornadas).forEach(jornada => {
+        const jornadaData = resumen.jornadas[jornada];
+        html += `
+            <div class="jornada-resumen">
+                <div class="jornada-titulo">
+                    Jornada ${jornada.charAt(0).toUpperCase() + jornada.slice(1)}: ${jornadaData.total}
+                </div>
+                <div class="candidato-votos">`;
+
+        // Agregar votos por candidato
+        Object.keys(jornadaData.candidatos).forEach(candidato => {
+            html += `
+                <div>
+                    ${candidato}: ${jornadaData.candidatos[candidato]}
+                </div>`;
+        });
+
+        html += `</div></div>`;
+    });
+
+    // Actualizar el contenido
+    $('.resumenes').html(html);
+}
+
+setInterval(actualizarVotos, 1000); // Recarga los votos cada segundo
 
 function aplicarFiltros() {
     const jornadaSeleccionada = $('#filtro-jornada').val().toLowerCase();

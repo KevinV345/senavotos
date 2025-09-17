@@ -12,15 +12,10 @@
 
 <body>
     <main class="container">
-        <div class="text">Lista de Votos</div>
+        <div class="tabla">
+            <div class="text">Sufragantes</div>
 
-        <div class="contador-votos">
-            Votos Registrados: <span id="total-votos">0</span>
-        </div>
-
-        {% if votos %}
-        <div class="tabla-scroll">
-
+            {% if votos %}
             <div class="filtros">
                 <label for="filtro-jornada">Filtrar Jornada:</label>
                 <select id="filtro-jornada">
@@ -39,43 +34,51 @@
                     {% endfor %}
                 </select>
             </div>
+            <div class="tabla-scroll">
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Documento</th>
-                        <th>Nombre</th>
-                        <th>Ficha</th>
-                        <th>Jornada</th>
-                        <th>Candidato</th>
-                    </tr>
-                </thead>
-                <tbody id="tabla-votos">
-                    {% for voto in votos %}
-                    <tr>
-                        <td>{{ voto.documento }}</td>
-                        <td>{{ voto.votante }}</td>
-                        <td>{{ voto.ficha or 'Sin ficha' }}</td>
-                        <td>{{ voto.jornada }}</td>
-                        <td>{{ voto.nombre_candidato }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Documento</th>
+                            <th>Nombre</th>
+                            <th>Ficha</th>
+                            <th>Jornada</th>
+                            <th>Candidato</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-votos">
+                        {% for voto in votos %}
+                        <tr>
+                            <td>{{ voto.documento }}</td>
+                            <td>{{ voto.votante }}</td>
+                            <td>{{ voto.ficha or 'Sin ficha' }}</td>
+                            <td>{{ voto.jornada }}</td>
+                            <td>{{ voto.nombre_candidato }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p>No se han registrado votos aún.</p>
+            {% endif %}
+
+            <div class="btn-container">
+                <a href="{{ url_for('home') }}" class="btn btn-back">Volver al Inicio</a>
+                <form id="form-exportar" method="POST" action="{{ url_for('exportar_excel') }}">
+                    <input type="hidden" name="jornada" id="filtro-jornada-hidden">
+                    <input type="hidden" name="candidato" id="filtro-candidato-hidden">
+                    <button type="submit" class="btn btn-export">Descargar Lista</button>
+                </form>
+                <a href="{{ url_for('upload') }}" class="btn btn-export">Cargar Ficha</a>
+                <a href="{{ url_for('crear_candidato') }}" class="btn btn-export">Candidatos</a>
+            </div>
         </div>
-        {% else %}
-        <p>No se han registrado votos aún.</p>
-        {% endif %}
-
-        <div class="btn-container">
-            <a href="{{ url_for('home') }}" class="btn btn-back">Volver al Inicio</a>
-            <form id="form-exportar" method="POST" action="{{ url_for('exportar_excel') }}">
-                <input type="hidden" name="jornada" id="filtro-jornada-hidden">
-                <input type="hidden" name="candidato" id="filtro-candidato-hidden">
-                <button type="submit" class="btn btn-export">Descargar Lista</button>
-            </form>
-            <a href="{{ url_for('upload') }}" class="btn btn-export">Cargar Ficha</a>
-            <a href="{{ url_for('crear_candidato') }}" class="btn btn-export">Candidatos</a>
+        <div class="resumen">
+            <div class="resumenes">
+                
+            </div>
         </div>
     </main>
 

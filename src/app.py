@@ -229,6 +229,7 @@ def actualizar_votos():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
 
     try:
+        # Consulta principal para obtener todos los votos
         cursor.execute(""" 
             SELECT 
                 u.documento, 
@@ -242,12 +243,44 @@ def actualizar_votos():
             JOIN fichas f ON u.fichas_idfichas = f.idfichas
         """)
         votos = cursor.fetchall()
-    except MySQLdb.Error:
-        votos = []
 
+        # Consulta para obtener el resumen por jornada y candidato
+        cursor.execute("""
+            SELECT 
+                u.jornada,
+                c.nombre_candidato,
+                COUNT(*) as total_votos
+            FROM votos v
+            JOIN usuarios u ON v.usuarios_idusuario = u.idusuario
+            JOIN candidatos c ON v.candidatos_idcandidato = c.idcandidato
+            GROUP BY u.jornada, c.nombre_candidato
+            ORDER BY u.jornada, c.nombre_candidato
+        """)
+        resumen_votos = cursor.fetchall()
+
+        # Consulta para obtener el total de votos por jornada
+        cursor.execute("""
+            SELECT 
+                u.jornada,
+                COUNT(*) as total_votos
+            FROM votos v
+            JOIN usuarios u ON v.usuarios_idusuario = u.idusuario
+            GROUP BY u.jornada
+            ORDER BY u.jornada
+        """)
+        total_por_jornada = cursor.fetchall()
+
+    except MySQLdb.Error as e:
+        print(f"Error al consultar los votos: {e}")
+        votos = []
+        resumen_votos = []
+        total_por_jornada = []
+
+    # Obtener listas únicas de jornadas y candidatos
     jornadas = sorted(set(v['jornada'] for v in votos))
     candidatos = sorted(set(v['nombre_candidato'] for v in votos))
 
+    # Generar el HTML para la tabla
     html_filas = render_template_string("""
         {% for voto in votos %}
         <tr>
@@ -264,7 +297,9 @@ def actualizar_votos():
         "html": html_filas,
         "jornadas": jornadas,
         "candidatos": candidatos,
-        "total": len(votos)  # Total de votos
+        "total": len(votos),
+        "resumen_votos": [dict(v) for v in resumen_votos],
+        "total_por_jornada": [dict(v) for v in total_por_jornada]
     })
 
 @app.route('/admin/exportar_excel', methods=['POST'])

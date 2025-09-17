@@ -3,6 +3,7 @@
 * {
     font-family: Poppins;
     font-weight: 500;
+    box-sizing: border-box;
 }
 
 body {
@@ -10,9 +11,8 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    height: 100dvh;
+    width: 100%;
     background-image: url(../img/FondoSena3.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -39,7 +39,7 @@ body {
 
 .contador-votos {
     display: flex;
-    justify-content: end;
+    justify-content: left;
     align-items: center;
     margin: 1%;
     font-weight: bold;
@@ -49,40 +49,125 @@ body {
 
 .contador-votos span {
     color: green;
-    margin-left: 1%;
     padding: 10px 20px;
-    background-color: rgba(0, 128, 0, 0.152);
-    border: 1px solid green;
-    border-radius: 50px;
     font-size: 20px;
     font-weight: bold;
 }
 
 .tabla-scroll {
-    max-height: 400px;
-    overflow-y: auto;
-    margin-bottom: 20px;
+    height: 350px;
+    overflow: auto;
+    margin-bottom: 15px;
 }
 
 .text {
     color: green;
     text-align: center;
-    padding: 10px;
-    margin-bottom: 20px;
-    font-size: 40px;
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size: 32px;
 }
 
 .container {
+    display: flex;
     background-color: #ffffff67;
-    padding: 2%;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.415);
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+}
+
+.tabla{
+    background-color: #ffffff67;
+    padding: 15px;
+    width: 70%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.resumen {
+    background-color: #ffffff67;
+    padding: 15px;
+    width: 30%;
+    height: 100%;
+    border-left: 3px solid green;
+    justify-content: left;
+    overflow-y: auto;
+}
+
+.resumenes {
+    padding: 10px;
+    background-color: #ffffff99;
     border-radius: 8px;
-    width: 90%;
-    max-width: 1000px;
-    border-radius: 15px;
-    height: 70%;
-    /* overflow-y: scroll; */
-    /* max-height: 500px; */
+    margin-top: 10px;
+    font-size: 0.95em;
+}
+
+.jornada-resumen {
+    margin: 8px 0;
+    padding: 8px 10px;
+    background-color: #f0f8f0;
+    border-radius: 6px;
+    border-left: 3px solid green;
+}
+
+.jornada-titulo {
+    font-weight: bold;
+    color: green;
+    margin-bottom: 5px;
+    font-size: 1em;
+}
+
+.candidato-votos {
+    margin-left: 10px;
+    color: #444;
+    line-height: 1.4;
+}
+
+.candidato-votos div {
+    padding: 3px 0;
+    border-bottom: 1px dashed #ddd;
+}
+
+.total-votos-resumen {
+    font-size: 1.1em;
+    color: green;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: 2px solid green;
+    padding-bottom: 8px;
+    text-align: center;
+}
+
+.jornada-resumen {
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #f0f8f0;
+    border-radius: 8px;
+    border-left: 4px solid green;
+}
+
+.jornada-titulo {
+    font-weight: bold;
+    color: green;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.candidato-votos {
+    margin-left: 15px;
+    color: #444;
+    line-height: 1.5;
+}
+
+.total-votos-resumen {
+    font-size: 1.2em;
+    color: green;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-bottom: 2px solid green;
+    padding-bottom: 10px;
 }
 
 .container select {
@@ -215,7 +300,7 @@ h1 {
         width: 95%;
         padding: 15px;
     }
-    
+
     table {
         display: block;
         overflow-x: auto;
