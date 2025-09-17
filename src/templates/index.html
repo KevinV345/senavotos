@@ -13,7 +13,9 @@
 <body>
     <header>
         <h1>¡Bienvenido!</h1>
+        <p class="subtitulo">Sistema de Votación - SenaVotos</p>
     </header>
+
     <main class="container">
         <div class="form-container">
             <!-- Mostrar mensaje de error si existe -->
@@ -33,12 +35,12 @@
             <!-- Mostrar formulario de ingreso -->
             <form action="/" method="POST">
                 <label for="documento">Ingrese su Documento:</label>
-                <input type="number" id="documento" name="documento" placeholder="Número de documento" required>
+                <input type="number" id="documento" name="documento" placeholder="Número de Documento" required>
 
-                <label for="clave">Ingrese su Clave:</label>
+                <!-- <label for="clave">Ingrese su Clave:</label>
                 <input type="password" id="clave" name="clave"
                     placeholder="Primeras 3 letras de tu programa (MAYÚS) + Últimos 3 números de tu ficha" required>
-                    <h4>Ejemplo: Diseño - 7654321 = DIS321</h2>
+                    <h4>Ejemplo: Diseño - 7654321 = DIS321</h2> -->
                 <button type="submit" class="submit-btn">Ingresar</button>
             </form>
             {% endif %}

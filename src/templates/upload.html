@@ -17,7 +17,6 @@
             <form method="POST" action="{{ url_for('procesar_fichas') }}" enctype="multipart/form-data" class="mt-4">
                 <div class="cargar">
                     <input type="file" id="fileUpload" name="file" class="form-control mt-3" required>
-                    <button type="submit" class="btn btn-primary mt-3">Subir Archivo</button>
 
                     <label for="jornada">Selecciona la Jornada:</label>
                     <select id="jornada" name="jornada" class="form-control" required>
@@ -26,6 +25,8 @@
                         <option value="mixta">Mixta</option>
                         <option value="virtual">Virtual</option>
                     </select>
+                    
+                    <button type="submit" class="btn btn-primary mt-3">Subir Archivo</button>
                 </div>
             </form>
 

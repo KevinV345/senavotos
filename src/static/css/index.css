@@ -29,6 +29,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     color: white;
     font-size: 20px;
     text-align: center;
@@ -40,7 +41,7 @@ header {
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 1100px;
+    max-width: 900px;
     padding: 5%;
     overflow: hidden; 
 }

@@ -24,15 +24,108 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px 30px;
-    max-width: 500px;
     width: 90%;
+    max-width: 1100px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .container h1 {
     font-size: 24px;
     color: green;
     margin-bottom: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header a {
+    font-size: 20px;
+}
+
+/* Contenedor de la tabla con scroll */
+.tabla-wrapper {
+    max-height: 500px;   
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Estilos de la tabla */
+.tabla-candidatos {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 18px;
+}
+
+.tabla-candidatos th,
+.tabla-candidatos td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.tabla-candidatos th {
+    position: sticky;   /* 👈 encabezado fijo */
+    top: 0;
+    background-color: #008000;
+    color: #fff;
+    z-index: 1;
+}
+
+.tabla-candidatos img {
+    border-radius: 8px;
+}
+
+.tabla-candidatos tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.tabla-candidatos tr:hover {
+    background-color: #f1f1f1;
+}
+
+.tabla-candidatos img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #008000;
+}
+
+/* Botones más uniformes */
+.btn {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 2px;
+    display: inline-block;
+    min-width: 80px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.btn.editar {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn.editar:hover {
+    background-color: #218838;
+}
+
+.btn.eliminar {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn.eliminar:hover {
+    background-color: #c82333;
 }
 
 label {
@@ -43,8 +136,8 @@ label {
     color: #444;
 }
 
-input[type="text"], 
-input[type="file"], 
+input[type="text"],
+input[type="file"],
 select {
     width: 100%;
     padding: 10px;
@@ -56,8 +149,8 @@ select {
     box-sizing: border-box;
 }
 
-input[type="text"]:focus, 
-input[type="file"]:focus, 
+input[type="text"]:focus,
+input[type="file"]:focus,
 select:focus {
     border-color: green;
     box-shadow: 0 0 5px rgba(0, 117, 41, 0.5);
@@ -99,12 +192,12 @@ a:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #f0f0f0;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     z-index: 1000;
-    text-align: center;
+    width: 400px;
 }
 
 .modal.show {
@@ -116,6 +209,10 @@ a:hover {
     text-shadow: #444;
 }
 
+.modal h2 {
+    color: green;
+}
+
 .overlay {
     display: none;
     position: fixed;
@@ -124,9 +221,28 @@ a:hover {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 900;
 }
 
 .overlay.show {
     display: block;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+    background: #00000000;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #00b000;
+    border: 3px solid #f5f5f500;
+    transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: green;
 }

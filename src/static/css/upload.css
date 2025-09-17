@@ -73,6 +73,8 @@ body {
 .cargar {
     display: flex;
     flex-direction: column;
+    padding: 10px 30px;
+    /* background-color: red; */
 }
 
 .cargar input {
@@ -99,7 +101,7 @@ body {
     background-color: rgba(197, 241, 194, 0.301);
     border: none;
     border-radius: 8px;
-    padding: 2%;
+    padding: 4%;
 }
 
 .container .btn-secondary {

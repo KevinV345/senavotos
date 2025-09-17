@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Candidato</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/crear_candidato.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Candidato</h1>
+        <form action="{{ url_for('editar_candidato', idcandidato=candidato.idcandidato) }}" method="POST" enctype="multipart/form-data">
+            <label for  ="nombre_candidato">Nombre del Candidato:</label>
+            <input type="text" id="nombre_candidato" name="nombre_candidato" value="{{ candidato.nombre_candidato }}" required>
+
+            <label for="foto_candidato">Foto del Candidato:</label>
+            <input type="file" id="foto_candidato" name="foto_candidato" accept="image/*">
+            <p>Foto actual:</p>
+            <img src="{{ url_for('foto_candidato', idcandidato=candidato.idcandidato) }}" alt="Foto actual" width="100">
+
+            <label for="jornada">Jornada:</label>
+            <select id="jornada" name="jornada">
+                <option value="mañana" {% if candidato.jornada == 'mañana' %}selected{% endif %}>Mañana</option>
+                <option value="tarde" {% if candidato.jornada == 'tarde' %}selected{% endif %}>Tarde</option>
+                <option value="mixta" {% if candidato.jornada == 'mixta' %}selected{% endif %}>Mixta</option>
+                <option value="virtual" {% if candidato.jornada == 'virtual' %}selected{% endif %}>Virtual</option>
+            </select>
+
+            <button type="submit">Actualizar</button>
+        </form>
+        <a href="{{ url_for('candidatos') }}">Volver</a>
+    </div>
+</body>
+</html>

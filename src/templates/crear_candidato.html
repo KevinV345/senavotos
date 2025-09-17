@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Nuevo Candidato</title>
+    <title>Gestión de Candidatos</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/crear_candidato.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='img/senavotos_logo.png') }}" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -12,45 +12,74 @@
 
 <body>
     <div class="container">
-        <h1>Añadir Candidato</h1>
-        <form action="{{ url_for('crear_candidato') }}" method="POST" enctype="multipart/form-data" onsubmit="mostrarNotificacion(event)">
-            <label for="nombre_candidato">Nombre del Candidato:</label>
-            <input type="text" id="nombre_candidato" name="nombre_candidato" required>
+        <div class="header">
+            <h1>Gestión de Candidatos</h1>
+            <a href="{{ url_for('admin') }}">Volver</a>
+        </div>
 
-            <label for="foto_candidato">Foto del Candidato:</label>
-            <input type="file" id="foto_candidato" name="foto_candidato" accept="image/*" required>
+        <!-- Tabla de candidatos -->
+        <div class="tabla-wrapper">
+            <table class="tabla-candidatos">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Nombre</th>
+                        <th>Jornada</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for candidato in candidatos %}
+                    <tr>
+                        <td><img src="{{ url_for('foto_candidato', idcandidato=candidato.idcandidato) }}" alt="Foto"
+                                width="60"></td>
+                        <td>{{ candidato.nombre_candidato }}</td>
+                        <td>{{ candidato.jornadas }}</td>
+                        <td>
+                            <a href="{{ url_for('editar_candidato', idcandidato=candidato.idcandidato) }}"
+                                class="btn editar">Editar</a>
+                            <a href="{{ url_for('eliminar_candidato', idcandidato=candidato.idcandidato) }}"
+                                class="btn eliminar" onclick="return confirmarEliminar(event)">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
-            <label for="jornada">Jornada:</label>
-            <select id="jornada" name="jornada">
-                <option value="mañana">Mañana</option>
-                <option value="tarde">Tarde</option>
-                <option value="mixta">Mixta</option>
-                <option value="virtual">Virtual</option>
-            </select>
+        <!-- Botón para mostrar el formulario -->
+        <button id="btn-abrir-formulario">Añadir Candidato</button>
 
-            <button type="submit">Crear</button>
-        </form>
-        <a href="/admin">Volver al Panel</a>
+        <!-- Fondo oscuro -->
+        <div id="overlay" class="overlay"></div>
+
+        <!-- Formulario flotante tipo modal -->
+        <div id="formulario-modal" class="modal">
+            <h2>Nuevo Candidato</h2>
+            <form action="{{ url_for('crear_candidato') }}" method="POST" enctype="multipart/form-data"
+                onsubmit="mostrarNotificacion(event)">
+                <label for="nombre_candidato">Nombre del Candidato:</label>
+                <input type="text" id="nombre_candidato" name="nombre_candidato" required>
+
+                <label for="foto_candidato">Foto del Candidato:</label>
+                <input type="file" id="foto_candidato" name="foto_candidato" accept="image/*" required>
+
+                <label for="jornada">Jornada:</label>
+                <select id="jornada" name="jornada">
+                    <option value="mañana">Mañana</option>
+                    <option value="tarde">Tarde</option>
+                    <option value="mixta">Mixta</option>
+                    <option value="virtual">Virtual</option>
+                </select>
+
+                <button type="submit">Crear</button>
+            </form>
+            <button id="cerrar-modal" style="margin-top:15px; background:#d33;">Cerrar</button>
+        </div>
     </div>
 
-    <script>
-        function mostrarNotificacion(event) {
-            event.preventDefault(); 
+    <script src="{{ url_for('static', filename='js/crear_candidato.js') }}"></script>
 
-            Swal.fire({
-                title: '¡Candidato añadido!',
-                text: 'Se ha registrado correctamente.',
-                icon: 'success',
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true
-            });
-
-            setTimeout(() => {
-                event.target.submit();
-            }, 2000);
-        }
-    </script>
 </body>
 
 </html>
