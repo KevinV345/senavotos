@@ -760,4 +760,4 @@ def actualizar_resultados():
     return jsonify(resultados_por_jornada)
 
 if __name__ == '__main__':
-    app.run(debug=False,port=80)
+    app.run(debug=False,port=80,host="0.0.0.0")
