@@ -1,0 +1,1 @@
+INSERT INTO usuarios(documento, nombre, fichas_idfichas, rol, jornada, asistencia_voto, mesa, celular, correo) VALUES('1101203247', 'ERNESTO AMAYA CODESO', 3229648, 1, 'mañana', 0, 12, '3001234567', 'juan.perez@example.com');

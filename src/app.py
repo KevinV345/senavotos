@@ -573,7 +573,7 @@ def buscar_votante():
         if usuario['asistencia_voto'] == 0:
             # Lista global de asignaciones mezcladas
             if 'cola_mesas' not in session or not session['cola_mesas']:
-                mesas = list(range(1, 5))  # [1..10]
+                mesas = list(range(1, 11))  # [1..10]
                 random.shuffle(mesas)
                 session['cola_mesas'] = mesas
 
@@ -795,4 +795,4 @@ def actualizar_resultados():
     return jsonify(resultados_por_jornada)
 
 if __name__ == '__main__':
-    app.run(debug=False,port=80,host="0.0.0.0")
+    app.run(debug=False,port=8080,host="0.0.0.0")
